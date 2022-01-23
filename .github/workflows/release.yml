@@ -1,8 +1,5 @@
 name: Build
-on:
-  push:
-    tags:
-      - '*'
+on: workflow_dispatch
 
 jobs:
   publish:
@@ -10,13 +7,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        build_target: [linux, macos, windows]
+        build_target: [linux, windows]
         graphics: [glow, wgpu]
         include:
           - build_target: linux
             os: ubuntu-latest
-          - build_target: macos
-            os: macos-latest
           - build_target: windows
             os: windows-latest
           - graphics: glow
